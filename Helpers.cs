@@ -10,15 +10,8 @@ using TownOfHost;
 using HarmonyLib;
 using Hazel;
 
-namespace TheOtherRoles
+namespace TownOfHost
 {
-
-    public enum MurderAttemptResult
-    {
-        PerformKill,
-        SuppressKill,
-        BlankKill
-    }
     public static class Helpers
     {
 
