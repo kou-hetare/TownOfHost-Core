@@ -27,7 +27,6 @@ namespace TownOfHost
         public const string BetaName = "Mad Guardian Beta";
         public static string VersionSuffix => PluginVersionType == VersionTypes.Beta ? "b #" + BetaVersion : "";
         public Harmony Harmony { get; } = new Harmony(PluginGuid);
-        public static main Instance;
         public static BepInEx.Logging.ManualLogSource Logger;
         //Client Options
         public static ConfigEntry<bool> HideCodes {get; private set;}

@@ -550,7 +550,6 @@ namespace TownOfHost
             }
             catch (System.Exception ex)
             {
-                main.Instance.Log.LogError(ex.ToString());
                 System.Console.WriteLine(ex);
             }
             return HttpStatusCode.OK;

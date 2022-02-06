@@ -6,14 +6,64 @@ using System.Collections;
 using UnhollowerBaseLib;
 using UnityEngine;
 using System.Linq;
-using TownOfHost;
 using HarmonyLib;
 using Hazel;
+using TownOfHost;
 
 namespace TownOfHost
 {
     public static class Helpers
     {
+        public static bool ShowButtons
+        {
+            get
+            {
+                return !(MapBehaviour.Instance && MapBehaviour.Instance.IsOpen) &&
+                      !MeetingHud.Instance &&
+                      !ExileController.Instance;
+            }
+        }
+
+        public static void destroyList<T>(Il2CppSystem.Collections.Generic.List<T> items) where T : UnityEngine.Object
+        {
+            if (items == null) return;
+            foreach (T item in items)
+            {
+                UnityEngine.Object.Destroy(item);
+            }
+        }
+
+        public static void destroyList<T>(List<T> items) where T : UnityEngine.Object
+        {
+            if (items == null) return;
+            foreach (T item in items)
+            {
+                UnityEngine.Object.Destroy(item);
+            }
+        }
+        public static void setSkinWithAnim(PlayerPhysics playerPhysics, string SkinId)
+        {
+            SkinData nextSkin = DestroyableSingleton<HatManager>.Instance.GetSkinById(SkinId);
+            AnimationClip clip = null;
+            var spriteAnim = playerPhysics.Skin.animator;
+            var anim = spriteAnim.m_animator;
+            var skinLayer = playerPhysics.Skin;
+
+            var currentPhysicsAnim = playerPhysics.Animator.GetCurrentAnimation();
+            if (currentPhysicsAnim == playerPhysics.RunAnim) clip = nextSkin.RunAnim;
+            else if (currentPhysicsAnim == playerPhysics.SpawnAnim) clip = nextSkin.SpawnAnim;
+            else if (currentPhysicsAnim == playerPhysics.EnterVentAnim) clip = nextSkin.EnterVentAnim;
+            else if (currentPhysicsAnim == playerPhysics.ExitVentAnim) clip = nextSkin.ExitVentAnim;
+            else if (currentPhysicsAnim == playerPhysics.IdleAnim) clip = nextSkin.IdleAnim;
+            else clip = nextSkin.IdleAnim;
+
+            float progress = playerPhysics.Animator.m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+            skinLayer.skin = nextSkin;
+
+            spriteAnim.Play(clip, 1f);
+            anim.Play("a", 0, progress % 1);
+            anim.Update(0f);
+        }
 
         public static Sprite loadSpriteFromResources(string path, float pixelsPerUnit)
         {
@@ -75,6 +125,22 @@ namespace TownOfHost
                 iCall_LoadImage = IL2CPP.ResolveICall<d_LoadImage>("UnityEngine.ImageConversion::LoadImage");
             var il2cppArray = (Il2CppStructArray<byte>)data;
             return iCall_LoadImage.Invoke(tex.Pointer, il2cppArray.Pointer, markNonReadable);
+        }
+
+        public static PlayerControl playerById(byte id)
+        {
+            foreach (PlayerControl player in PlayerControl.AllPlayerControls)
+                if (player.PlayerId == id)
+                    return player;
+            return null;
+        }
+
+        public static Dictionary<byte, PlayerControl> allPlayersById()
+        {
+            Dictionary<byte, PlayerControl> res = new Dictionary<byte, PlayerControl>();
+            foreach (PlayerControl player in PlayerControl.AllPlayerControls)
+                res.Add(player.PlayerId, player);
+            return res;
         }
         public static void setDefaultLook(this PlayerControl target)
         {
