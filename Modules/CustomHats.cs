@@ -477,14 +477,6 @@ namespace TownOfHost
         };
 
         public static List<CustomHatOnline> hatdetails = new List<CustomHatOnline>();
-        private static Task hatFetchTask = null;
-        public static void LaunchHatFetcher()
-        {
-            if (running)
-                return;
-            running = true;
-        }
-
         private static string sanitizeResourcePath(string res)
         {
             if (res == null || !res.EndsWith(".png"))
