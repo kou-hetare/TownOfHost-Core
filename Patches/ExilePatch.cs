@@ -40,10 +40,12 @@ namespace TownOfHost
             main.SpelledPlayer.RemoveAll(pc => pc == null || pc.Data == null || pc.Data.IsDead || pc.Data.Disconnected);
             foreach(var p in main.SpelledPlayer)
             {
+                main.AllPlayerDeathReason.Add(main.RealNames[p.PlayerId], PlayerState.DeathReason.Kill);
                 p.RpcMurderPlayer(p);
             }
             if (exiled != null)
             {
+                main.AllPlayerDeathReason.Add(main.RealNames[exiled.PlayerId], PlayerState.DeathReason.Vote);
                 var role = exiled.getCustomRole();
                 if (role == CustomRoles.Witch)
                 {

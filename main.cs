@@ -42,8 +42,10 @@ namespace TownOfHost
         //Lang-arrangement
         private static Dictionary<lang, string> JapaneseTexts = new Dictionary<lang, string>();
         private static Dictionary<CustomRoles, string> JapaneseRoleNames = new Dictionary<CustomRoles, string>();
+        private static Dictionary<PlayerState.DeathReason, string> JapaneseDeathReason = new Dictionary<PlayerState.DeathReason, string>();
         private static Dictionary<lang, string> EnglishTexts = new Dictionary<lang, string>();
         private static Dictionary<CustomRoles, string> EnglishRoleNames = new Dictionary<CustomRoles, string>();
+        private static Dictionary<PlayerState.DeathReason, string> EnglishDeathReason = new Dictionary<PlayerState.DeathReason, string>();
         //Other Configs
         public static ConfigEntry<bool> IgnoreWinnerCommand { get; private set; }
         public static ConfigEntry<string> WebhookURL { get; private set; }
@@ -60,6 +62,7 @@ namespace TownOfHost
 
         public static Dictionary<byte, CustomRoles> AllPlayerCustomRoles;
         public static Dictionary<string, CustomRoles> lastAllPlayerCustomRoles;
+        public static Dictionary<string, PlayerState.DeathReason> AllPlayerDeathReason;
         public static bool SyncButtonMode;
         public static int SyncedButtonCount;
         public static int UsedButtonCount;
@@ -130,6 +133,13 @@ namespace TownOfHost
             var isSuccess = dic.TryGetValue(role, out var text);
             return isSuccess ? text : "<Not Found:" + role.ToString() + ">";
         }
+        public static string getDeathReason(PlayerState.DeathReason status)
+        {
+            var dic = TranslationController.Instance.CurrentLanguage.languageID == SupportedLangs.Japanese || forceJapanese ? JapaneseDeathReason : EnglishDeathReason;
+            var isSuccess = dic.TryGetValue(status, out var text);
+            return isSuccess ? text : "<Not Found:" + status.ToString() + ">";
+        }
+
         public static Color getRoleColor(CustomRoles role)
         {
             string hexColor;
@@ -423,6 +433,14 @@ namespace TownOfHost
                 if (main.winnerList.Contains(name))
                 {
                     text += "(Win)";
+                }
+                if (main.AllPlayerDeathReason.ContainsKey(name))
+                {
+                    var reason = main.AllPlayerDeathReason[name];
+                    if (reason != PlayerState.DeathReason.etc)
+                    {
+                        text += $" {main.getDeathReason(reason)} ";
+                    }
                 }
                 text += $"{name}:{main.getRoleName(kvp.Value)}";
             }
@@ -1116,6 +1134,18 @@ namespace TownOfHost
                 {CustomRoles.Troll, "トロール"},
             };
 
+            EnglishDeathReason = new Dictionary<PlayerState.DeathReason, string>(){
+                {PlayerState.DeathReason.Kill,"Kill" },
+                {PlayerState.DeathReason.Vote,"Vote" },
+                {PlayerState.DeathReason.Suicide,"Suicide" },
+                {PlayerState.DeathReason.etc,"etc" },
+            };
+            JapaneseDeathReason = new Dictionary<PlayerState.DeathReason, string>(){
+                {PlayerState.DeathReason.Kill,"死亡" },
+                {PlayerState.DeathReason.Vote,"追放" },
+                {PlayerState.DeathReason.Suicide,"自爆" },
+                {PlayerState.DeathReason.etc,"etc" },
+            };
 
             } catch(ArgumentException ex) {
                 TownOfHost.Logger.error("エラー:Dictionaryの値の重複を検出しました");

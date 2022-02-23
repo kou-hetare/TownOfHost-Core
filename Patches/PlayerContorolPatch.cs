@@ -23,6 +23,16 @@ namespace TownOfHost
             if (!target.Data.IsDead || !AmongUsClient.Instance.AmHost)
                 return;
             Logger.SendToFile("MurderPlayer発生: " + __instance.name + "=>" + target.name);
+            if(__instance==target && __instance.getCustomRole() == CustomRoles.Sheriff)
+            {
+                //When Sheriff,Suicide
+                main.AllPlayerDeathReason.Add(main.RealNames[target.PlayerId], PlayerState.DeathReason.Suicide);
+            }
+            else
+            {
+                //Other Kill or Delayed Kill
+                main.AllPlayerDeathReason.Add(main.RealNames[target.PlayerId], PlayerState.DeathReason.Kill);
+            }
             //When Bait is killed
             if (target.getCustomRole() == CustomRoles.Bait && __instance.PlayerId != target.PlayerId)
             {

@@ -220,6 +220,8 @@ namespace TownOfHost
                     main.lastAllPlayerCustomRoles.Add(main.RealNames[pair.Key], pair.Value);
                 }
 
+                main.AllPlayerDeathReason = new();
+
                 HudManager.Instance.SetHudActive(true);
                 main.KillOrSpell = new Dictionary<byte, bool>();
                 foreach (var pc in PlayerControl.AllPlayerControls){
