@@ -88,7 +88,7 @@ namespace TownOfHost
         public static VoteMode whenSkipVote = VoteMode.Default;
         public static VoteMode whenNonVote = VoteMode.Default;
         public static bool canTerroristSuicideWin = false;
-        public static string winnerList;
+        public static List<string> winnerList;
         public static List<(string, byte)> MessagesToSend;
         
 
@@ -418,7 +418,13 @@ namespace TownOfHost
             var text = "ロール割り当て:";
             foreach(KeyValuePair<string, CustomRoles> kvp in lastAllPlayerCustomRoles)
             {
-                text += $"\n{kvp.Key}:{main.getRoleName(kvp.Value)}";
+                var name = kvp.Key;
+                text += "\n";
+                if (main.winnerList.Contains(name))
+                {
+                    text += "(Win)";
+                }
+                text += $"{name}:{main.getRoleName(kvp.Value)}";
             }
             main.SendToAll(text);
         }
@@ -792,7 +798,7 @@ namespace TownOfHost
             BitPlayers = new Dictionary<byte, (byte, float)>();
             BountyTargets = new Dictionary<byte, PlayerControl>();
             SpelledPlayer = new List<PlayerControl>();
-            winnerList = "";
+            winnerList = new();
             VisibleTasksCount = false;
             MessagesToSend = new List<(string, byte)>();
 

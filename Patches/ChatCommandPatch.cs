@@ -30,7 +30,7 @@ namespace TownOfHost
                     case "/win":
                     case "/winner":
                         canceled = true;
-                        main.SendToAll(main.winnerList);
+                        main.SendToAll("winner:"+string.Join(", ",main.winnerList));
                         break;
 
                     case "/l":
