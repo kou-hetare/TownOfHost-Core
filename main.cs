@@ -434,7 +434,13 @@ namespace TownOfHost
             var text = "ロール割り当て:";
             foreach(KeyValuePair<string, CustomRoles> kvp in lastAllPlayerCustomRoles)
             {
-                text += $"\n{kvp.Key}:{main.getRoleName(kvp.Value)}";
+                text += "\n";
+                if (main.winnerList.Contains(kvp.Key+ ", "))
+                {
+                    text += "-Win- ";
+
+                }
+                text += $"{kvp.Key}:{main.getRoleName(kvp.Value)}";
             }
             main.SendToAll(text);
         }
