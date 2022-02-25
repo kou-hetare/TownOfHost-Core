@@ -429,20 +429,24 @@ namespace TownOfHost
             foreach(KeyValuePair<string, CustomRoles> kvp in lastAllPlayerCustomRoles)
             {
                 var name = kvp.Key;
-                text += "\n";
+                text += "\n  ";
                 if (main.winnerList.Contains(name))
                 {
-                    text += "(Win)";
+                    text += "★";
                 }
+                else
+                {
+                    text += "　";
+                }
+                text += $"{name} : {main.getRoleName(kvp.Value)}";
                 if (main.AllPlayerDeathReason.ContainsKey(name))
                 {
                     var reason = main.AllPlayerDeathReason[name];
                     if (reason != PlayerState.DeathReason.etc)
                     {
-                        text += $" {main.getDeathReason(reason)} ";
+                        text += $" {main.getDeathReason(reason)}";
                     }
                 }
-                text += $"{name}:{main.getRoleName(kvp.Value)}";
             }
             main.SendToAll(text);
         }
