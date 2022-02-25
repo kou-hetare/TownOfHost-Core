@@ -39,6 +39,15 @@ namespace TownOfHost
                 // Reset lobby countdown timer
                 timer = 600f;
                 lobbyCodehide = $"<color={main.modColor}>Town Of Host</color>";
+
+                if (AmongUsClient.Instance.AmHost && main.autoDisplayLastRoles && main.lastAllPlayerCustomRoles.Count != 0)
+                {
+                    new LateTask(() =>
+                    {
+                        main.ShowLastRoles();
+                    }
+                        , 5f, "DisplayLastRoles");
+                }
             }
         }
 
