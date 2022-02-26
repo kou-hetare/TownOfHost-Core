@@ -70,8 +70,11 @@ namespace TownOfHost
                 TempData.winners = new Il2CppSystem.Collections.Generic.List<WinningPlayerData>();
                 foreach (var p in PlayerControl.AllPlayerControls)
                 {
-                    if (p.PlayerId == main.ExiledJesterID)
+                    if (p.PlayerId == main.ExiledJesterID) {
                         TempData.winners.Add(new WinningPlayerData(p.Data));
+                        winner = new();
+                        winner.Add(p);
+                    }
                 }
             }
             if (main.currentWinner == CustomWinner.Terrorist && main.TerroristCount> 0)
@@ -80,7 +83,11 @@ namespace TownOfHost
                 foreach (var p in PlayerControl.AllPlayerControls)
                 {
                     if (p.PlayerId == main.WonTerroristID)
+                    {
                         TempData.winners.Add(new WinningPlayerData(p.Data));
+                        winner = new();
+                        winner.Add(p);
+                    }
                 }
             }
             //HideAndSeek専用
