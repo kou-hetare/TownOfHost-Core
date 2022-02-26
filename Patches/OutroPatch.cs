@@ -45,7 +45,7 @@ namespace TownOfHost
             //Opportunist
             foreach(var pc in PlayerControl.AllPlayerControls) {
                 if(pc.isOpportunist() && !pc.Data.IsDead)
-                    TempData.winners.Add(new WinningPlayerData(pc.Data));
+                    winner.Add(pc);
             }
 
             //廃村時の処理など
