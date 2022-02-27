@@ -981,6 +981,7 @@ namespace TownOfHost
                 {lang.InvalidArgs, "無効な引数"},
                 {lang.ON, "ON"},
                 {lang.OFF, "OFF"},
+                {lang.Win, "勝利"},
             };
             EnglishTexts = new Dictionary<lang, string>(){
                 //役職解説(短)
@@ -1083,6 +1084,7 @@ namespace TownOfHost
                 {lang.InvalidArgs, "Invalid Args"},
                 {lang.ON, "ON"},
                 {lang.OFF, "OFF"},
+                {lang.Win, " Wins"},
             };
             EnglishRoleNames = new Dictionary<CustomRoles, string>(){
                 {CustomRoles.Default, "Crewmate"},
@@ -1276,6 +1278,7 @@ namespace TownOfHost
         InvalidArgs,
         ON,
         OFF,
+        Win,
     }
     public enum CustomRoles {
         Default = 0,
