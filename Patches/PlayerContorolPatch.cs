@@ -83,7 +83,46 @@ namespace TownOfHost
                     }
                 }
             }
-            if(Options.CanMakeMadmateCount > main.SKMadmateNowCount && !__instance.isWarlock() && !main.CheckShapeshift[__instance.PlayerId])
+            else if (__instance.isBomber() && !main.CheckShapeshift[__instance.PlayerId])
+            {
+                if (!main.BomberFire)
+                {
+                    //爆弾座標セット
+                    main.BombPosition = __instance.transform.position;
+                    main.BomberFire = true;
+                }
+                else
+                {
+                    bool sueside = false;
+                    foreach (PlayerControl p in PlayerControl.AllPlayerControls)
+                    {
+                        if (!p.Data.IsDead)
+                        {
+                            var dis = Vector2.Distance(main.BombPosition, p.transform.position);
+                            if (dis < 0.5)
+                            {
+                                if (p == __instance)
+                                {
+                                    //自分は後回し
+                                    sueside = true;
+                                }
+                                else
+                                {
+                                    p.RpcMurderPlayer(p);
+                                    p.RpcGuardAndKill(p);
+                                }
+                            }
+                            
+                        }
+                    }
+                    if (sueside)
+                    {
+                        __instance.RpcMurderPlayer(__instance);
+                        __instance.RpcGuardAndKill(__instance);
+                    }
+                }
+            }
+            else if(Options.CanMakeMadmateCount > main.SKMadmateNowCount && !__instance.isWarlock() && !main.CheckShapeshift[__instance.PlayerId])
             {//変身したとき一番近い人をマッドメイトにする処理
                 Vector2 __instancepos = __instance.transform.position;//変身者の位置
                 Dictionary<PlayerControl, float> mpdistance = new Dictionary<PlayerControl, float>();

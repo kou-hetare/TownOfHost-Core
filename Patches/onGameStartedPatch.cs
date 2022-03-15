@@ -32,7 +32,8 @@ namespace TownOfHost
             main.BountyTimerCheck = false;
             main.BountyMeetingCheck = false;
             main.CheckShapeshift = new Dictionary<byte, bool>();
-
+            main.BomberFire = false;
+            main.BombPosition = new();
             Options.UsedButtonCount = 0;
             Options.SabotageMasterUsedSkillCount = 0;
             main.RealOptionsData = PlayerControl.GameOptions.DeepCopy();
@@ -74,7 +75,7 @@ namespace TownOfHost
                 roleOpt.SetRoleRate(RoleTypes.Engineer, EngineerNum + AdditionalEngineerNum, AdditionalEngineerNum > 0 ? 100 : roleOpt.GetChancePerGame(RoleTypes.Engineer));
 
                 int ShapeshifterNum = roleOpt.GetNumPerGame(RoleTypes.Shapeshifter);
-                int AdditionalShapeshifterNum = CustomRoles.Mafia.getCount() + CustomRoles.SerialKiller.getCount() + CustomRoles.BountyHunter.getCount() + CustomRoles.Warlock.getCount() + CustomRoles.ShapeMaster.getCount();//- ShapeshifterNum;
+                int AdditionalShapeshifterNum = CustomRoles.Mafia.getCount() + CustomRoles.SerialKiller.getCount() + CustomRoles.BountyHunter.getCount() + CustomRoles.Warlock.getCount() + CustomRoles.ShapeMaster.getCount() + CustomRoles.Bomber.getCount(); ;//- ShapeshifterNum;
                 roleOpt.SetRoleRate(RoleTypes.Shapeshifter, ShapeshifterNum + AdditionalShapeshifterNum, AdditionalShapeshifterNum > 0 ? 100 : roleOpt.GetChancePerGame(RoleTypes.Shapeshifter));
 
                 
@@ -204,6 +205,7 @@ namespace TownOfHost
                     }
                 }
 
+                AssignCustomRolesFromList(CustomRoles.Bomber, Shapeshifters);
                 AssignCustomRolesFromList(CustomRoles.Jester, Crewmates);
                 AssignCustomRolesFromList(CustomRoles.Madmate, Engineers);
                 AssignCustomRolesFromList(CustomRoles.Bait, Crewmates);

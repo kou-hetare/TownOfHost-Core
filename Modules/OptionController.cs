@@ -24,6 +24,7 @@ namespace TownOfHost
             //陣営＞サイドキック＞アルファベット
             ///インポスター役職
             var BountyHunter = new PageObject(RoleOptions, CustomRoles.BountyHunter);
+            var Bomber = new PageObject(RoleOptions, CustomRoles.Bomber);
             var SerialKiller = new PageObject(RoleOptions, CustomRoles.SerialKiller);
             var ShapeMaster = new PageObject(RoleOptions, CustomRoles.ShapeMaster);
             var Vampire = new PageObject(RoleOptions, CustomRoles.Vampire);

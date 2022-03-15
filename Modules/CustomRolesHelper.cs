@@ -4,6 +4,7 @@ namespace TownOfHost {
             return
                 role == CustomRoles.Impostor ||
                 role == CustomRoles.Shapeshifter ||
+                role == CustomRoles.Bomber ||
                 role == CustomRoles.BountyHunter ||
                 role == CustomRoles.Vampire ||
                 role == CustomRoles.Witch ||

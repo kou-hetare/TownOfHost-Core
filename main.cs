@@ -79,6 +79,8 @@ namespace TownOfHost
         public static bool BountyMeetingCheck;
         public static bool isBountyKillSuccess;
         public static bool BountyTimerCheck;
+        public static bool BomberFire;
+        public static Vector3 BombPosition;
         public static Dictionary<byte, bool> CheckShapeshift = new Dictionary<byte, bool>();
         public static byte ExiledJesterID;
         public static byte WonTerroristID;
@@ -160,6 +162,7 @@ namespace TownOfHost
                 {CustomRoles.ShapeMaster, "#ff0000"},
                 {CustomRoles.Warlock, "#ff0000"},
                 {CustomRoles.SerialKiller, "#ff0000"},
+                {CustomRoles.Bomber, "#ff0000"},
                 {CustomRoles.Fox, "#e478ff"},
                 {CustomRoles.Troll, "#00ff00"}
             };
@@ -216,6 +219,7 @@ namespace TownOfHost
         ShapeMaster,
         Warlock,
         SerialKiller,
+        Bomber,
         Fox,
         Troll
     }

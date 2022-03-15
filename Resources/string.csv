@@ -5,6 +5,7 @@ Scientist,Scientist,科学者
 GuardianAngel,GuardianAngel,守護天使
 Impostor,Impostor,インポスター
 Shapeshifter,Shapeshifter,シェイプシフター
+Bomber,???,???
 BountyHunter,BountyHunter,バウンティハンター
 SerialKiller,SerialKiller,シリアルキラー
 ShapeMaster,ShapeMaster,シェイプマスター
@@ -26,6 +27,7 @@ Sheriff,Sheriff,シェリフ
 Snitch,Snitch,スニッチ
 Fox,Fox,狐
 Troll,Troll,トロール
+BomberInfo,???,???
 BountyHunterInfo,Hunt your bounty down,標的を確実に仕留めよう
 SerialKillerInfo,Keep killng to win,殺人衝動が抑えられない
 ShapeMasterInfo,Shapeshift and confuse your enemies,変身して敵を混乱させよう
@@ -49,6 +51,7 @@ SheriffInfo,Shoot the Impostors,インポスターを撃ち抜け
 SnitchInfo,Finish your tasks to find the Impostors,タスクを早く済ませよう
 FoxInfo,Do whatever it takes to survive,とにかく生き残りましょう
 TrollInfo,Die to win,自爆しよう
+BomberInfoLong,"(Impostors):\n???",(インポスター陣営):\n???
 BountyHunterInfoLong,"(Impostors):\nThe first time you try to kill someone, a target is displayed.\nWhen you kill the displayed target, your killcool is halved.\nIf you kill someone else, your killcool is keep standard.",(インポスター陣営):\n標的をキルすると次のｷﾙｸｰﾙが半分になる。\n標的以外をキルするとｷﾙｸｰﾙは通常になる。
 SerialKillerInfoLong,"(Impostors):\nThe kill cool time is shorter than that of other Impostors,\nbut if the kill is not made before the shapeshift's cool time expires, will suicide.",(インポスター陣営):\nキルクールが他のインポスターに比べて短い反面、変身のクールタイムが明ける前にキルしないと自爆する。
 ShapeMasterInfoLong,"(Impostors):\nImpostors specializing in shape-shifting.\nThere is no cooldown, but the transformation lasts only 10 seconds.",(インポスター陣営):\nシェイプシフトに特化したｲﾝﾎﾟｽﾀ-。\nクールダウンはないが変身は10秒間しかできない。
