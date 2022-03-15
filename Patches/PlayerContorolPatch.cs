@@ -93,7 +93,7 @@ namespace TownOfHost
                 }
                 else
                 {
-                    bool sueside = false;
+                    bool suicide = false;
                     foreach (PlayerControl p in PlayerControl.AllPlayerControls)
                     {
                         if (!p.Data.IsDead)
@@ -104,10 +104,11 @@ namespace TownOfHost
                                 if (p == __instance)
                                 {
                                     //自分は後回し
-                                    sueside = true;
+                                    suicide = true;
                                 }
                                 else
                                 {
+                                    PlayerState.setDeathReason(p.PlayerId, PlayerState.DeathReason.Bombed);
                                     p.RpcMurderPlayer(p);
                                     p.RpcGuardAndKill(p);
                                 }
@@ -115,8 +116,9 @@ namespace TownOfHost
                             
                         }
                     }
-                    if (sueside)
+                    if (suicide)
                     {
+                        PlayerState.setDeathReason(__instance.PlayerId, PlayerState.DeathReason.Suicide);
                         __instance.RpcMurderPlayer(__instance);
                         __instance.RpcGuardAndKill(__instance);
                     }
