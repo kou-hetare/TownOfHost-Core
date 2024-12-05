@@ -18,22 +18,22 @@ using TownOfHost.Modules;
 [assembly: AssemblyInformationalVersionAttribute(TownOfHost.Main.PluginVersion)]
 namespace TownOfHost
 {
-    [BepInPlugin(PluginGuid, "Town Of Host", PluginVersion)]
+    [BepInPlugin(PluginGuid, "Town Of Host-Core", PluginVersion)]
     [BepInIncompatibility("jp.ykundesu.supernewroles")]
     [BepInProcess("Among Us.exe")]
     public class Main : BasePlugin
     {
         // == プログラム設定 / Program Config ==
         // modの名前 / Mod Name (Default: Town Of Host)
-        public static readonly string ModName = "Town Of Host";
+        public static readonly string ModName = "Town Of-Host Core";
         // modの色 / Mod Color (Default: #00bfff)
-        public static readonly string ModColor = "#00bfff";
+        public static readonly string ModColor = "#ff0000";
         // 公開ルームを許可する / Allow Public Room (Default: true)
-        public static readonly bool AllowPublicRoom = true;
+        public static readonly bool AllowPublicRoom = false;
         // フォークID / ForkId (Default: OriginalTOH)
-        public static readonly string ForkId = "OriginalTOH";
+        public static readonly string ForkId = "TOH-Core";
         // Discordボタンを表示するか / Show Discord Button (Default: true)
-        public static readonly bool ShowDiscordButton = true;
+        public static readonly bool ShowDiscordButton = false;
         // Discordサーバーの招待リンク / Discord Server Invite URL (Default: https://discord.gg/W5ug6hXB9V)
         public static readonly string DiscordInviteUrl = "https://discord.gg/W5ug6hXB9V";
         // ==========
@@ -50,8 +50,8 @@ namespace TownOfHost
 
         // ==========
         //Sorry for many Japanese comments.
-        public const string PluginGuid = "com.emptybottle.townofhost";
-        public const string PluginVersion = "5.1.9";
+        public const string PluginGuid = "com.hetare-pg.townofhost";
+        public const string PluginVersion = "5.1.9.000";
         // サポートされている最低のAmongUsバージョン
         public static readonly string LowestSupportedVersion = "2024.8.13";
         // このバージョンのみで公開ルームを無効にする場合
