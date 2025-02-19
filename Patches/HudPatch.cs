@@ -18,7 +18,6 @@ namespace TownOfHost
         public static int LastFPS = 0;
         public static int NowFrameCount = 0;
         public static float FrameRateTimer = 0.0f;
-        public static TMPro.TextMeshPro LowerInfoText;
         public static void Postfix(HudManager __instance)
         {
             if (!GameStates.IsModHost) return;
@@ -61,28 +60,6 @@ namespace TownOfHost
                             __instance.AbilityButton.OverrideText(roleClass.GetAbilityButtonText());
                             __instance.AbilityButton.ToggleVisible(roleClass.CanUseAbilityButton() && GameStates.IsInTask);
                         }
-                    }
-
-                    //バウンティハンターのターゲットテキスト
-                    if (LowerInfoText == null)
-                    {
-                        LowerInfoText = UnityEngine.Object.Instantiate(__instance.KillButton.buttonLabelText);
-                        LowerInfoText.transform.parent = __instance.transform;
-                        LowerInfoText.transform.localPosition = new Vector3(0, -2f, 0);
-                        LowerInfoText.alignment = TMPro.TextAlignmentOptions.Center;
-                        LowerInfoText.overflowMode = TMPro.TextOverflowModes.Overflow;
-                        LowerInfoText.enableWordWrapping = false;
-                        LowerInfoText.color = Palette.EnabledColor;
-                        LowerInfoText.fontSizeMin = 2.0f;
-                        LowerInfoText.fontSizeMax = 2.0f;
-                    }
-
-                    LowerInfoText.text = roleClass?.GetLowerText(player, isForMeeting: GameStates.IsMeeting, isForHud: true) ?? "";
-                    LowerInfoText.enabled = LowerInfoText.text != "";
-
-                    if (!AmongUsClient.Instance.IsGameStarted && AmongUsClient.Instance.NetworkMode != NetworkModes.FreePlay)
-                    {
-                        LowerInfoText.enabled = false;
                     }
 
                     if (player.CanUseKillButton())
