@@ -28,7 +28,7 @@ static class NameManager
             }
         }
         //更新する必要がなければここで終わり
-        if (!NotifyDirty[seer.PlayerId]) return;
+        if (!isForMeeting && !NotifyDirty[seer.PlayerId]) return;
 
         var nameSender = !seer.IsModClient() ? CustomRpcSender.Create($"NameSender for {seer.name}", SendOption.Reliable) : null;
         var seerRole = seer.GetRoleClass();
