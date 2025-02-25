@@ -80,14 +80,15 @@ static class NameManager
             //seerに関わらず発動するLowerText
             Lower.Append(CustomRoleManager.GetLowerTextOthers(seer, seen, isForMeeting));
 
-            string fontSize = isForMeeting ? "1.5" : Main.RoleTextSize.ToString();
-            var seenRoleText = seenRoleData.enabled ? $"<size={fontSize}>{seenRoleData.text}</size>\r\n" : "";
+            var fontSize = isForMeeting ? 1.5 : Main.RoleTextSize;
+            var lineHeight = isForMeeting ? $"<line-height=80%>" : "";
+            var seenRoleText = seenRoleData.enabled ? $"{lineHeight}<size={fontSize}>{seenRoleData.text}</size>\r\n" : "";
             var newName = $"{seenRoleText}{RealName}{DeathReason}{Mark}";
 
             var suffixtext = Lower.ToString() + Suffix.ToString();
             if (suffixtext != "")
             {
-                newName += $"\r\n{suffixtext}";
+                newName += $"\r\n<size={fontSize}>{suffixtext}</size>";
             }
 
             if (seer.AmOwner)
