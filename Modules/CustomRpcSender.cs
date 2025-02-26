@@ -3,6 +3,7 @@ using AmongUs.GameOptions;
 using Hazel;
 using InnerNet;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
+using UnityEngine.ProBuilder;
 
 namespace TownOfHost
 {
@@ -265,6 +266,16 @@ namespace TownOfHost
             sender.AutoStartRpc(player.NetId, (byte)RpcCalls.MurderPlayer, targetClientId)
                 .WriteNetObject(target)
                 .Write((int)ExtendedPlayerControl.SucceededFlags)
+                .EndRpc();
+        }
+        public static void RpcSetName(this CustomRpcSender sender, PlayerControl seen, string name, PlayerControl seer = null)
+        {
+            Logger.Info($"Make SetName for {seer.Data.PlayerName} :{seen.name} to {name}", "CRS_SetName");
+
+            var seerClientId = seer == null ? -1 : seer.GetClientId();
+            sender.AutoStartRpc(seen.NetId, (byte)RpcCalls.SetName, seerClientId)
+                .Write(seen.NetId)
+                .Write(name)
                 .EndRpc();
         }
     }
