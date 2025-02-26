@@ -25,7 +25,7 @@ namespace TownOfHost
     {
         // == プログラム設定 / Program Config ==
         // modの名前 / Mod Name (Default: Town Of Host)
-        public static readonly string ModName = "Town Of-Host Core";
+        public static readonly string ModName = "Town Of Host-Core";
         // modの色 / Mod Color (Default: #00bfff)
         public static readonly string ModColor = "#ff0000";
         // 公開ルームを許可する / Allow Public Room (Default: true)
