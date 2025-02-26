@@ -39,7 +39,7 @@ static class NameManager
         foreach (var seen in Main.AllPlayerControls)
         {
             var seenRoleData = Utils.GetRoleNameAndProgressTextData(seer, seen);
-            var NoCache = false;
+            var noCache = false;
             string RealName;
             Mark.Clear();
             Lower.Clear();
@@ -103,7 +103,7 @@ static class NameManager
             }
             else
             {
-                if (!NoCache && (Main.LastNotifyNames.TryGetValue((seer.PlayerId, seen.PlayerId), out var lastNotifyName) && lastNotifyName == newName)) continue;
+                if (!noCache && (Main.LastNotifyNames.TryGetValue((seer.PlayerId, seen.PlayerId), out var lastNotifyName) && lastNotifyName == newName)) continue;
                 Main.LastNotifyNames[(seer.PlayerId, seen.PlayerId)] = newName;
                 nameSender?.RpcSetName(seen, newName, seer);
             }
